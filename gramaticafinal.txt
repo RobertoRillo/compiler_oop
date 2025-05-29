@@ -1,0 +1,48 @@
+# ----------------------------
+# PROGRAM ROOT
+# ----------------------------
+1. program     → stmt_list
+
+# ----------------------------
+# STATEMENTS
+# ----------------------------
+2. stmt_list   → stmt { stmt }
+3. stmt        → class_def | method_def | id_stmt | return_stmt | pass_stmt
+4. id_stmt     → ID attr_chain id_stmt_tail
+5. id_stmt_tail → EQUALS expr | ε       # assignment | method call
+
+
+# ----------------------------
+# CLASS AND METHOD DEFINITIONS
+# ----------------------------
+6.  class_def   → CLASS ID COLON block
+7. method_def  → DEF method_name LPAREN param_list RPAREN COLON block
+8. method_name → ID | INIT
+9. param_list  → ε | SELF | SELF COMMA params | params
+10. params      → ID { COMMA ID }
+
+# ----------------------------
+# STATEMENTS INSIDE METHODS/CLASSES
+# ----------------------------
+
+11. return_stmt  → RETURN | RETURN expr
+12. pass_stmt    → PASS
+
+# ----------------------------
+# EXPRESSIONS AND TARGETS
+# ----------------------------
+13. target      → ID attr_chain   # self.x
+14. attr_chain  → ε | DOT ID attr_chain | LPAREN arg_list RPAREN attr_chain   ## .x  → en self.x, aquí va ".x"
+15. expr        → term { binary_op term }
+16. term        → ID attr_chain | NUMBER | STRING | LPAREN expr RPAREN
+17. binary_op   → PLUS | MINUS | MUL | DIV
+
+# ----------------------------
+# FUNCTION ARGUMENTS
+# ----------------------------
+18. arg_list    → ε | expr { COMMA expr }
+
+# ----------------------------
+# BLOCK STRUCTURE  
+# ----------------------------
+19. block       → NEWLINE INDENT stmt_list DEDENT
