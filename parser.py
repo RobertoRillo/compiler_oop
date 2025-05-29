@@ -37,6 +37,13 @@ def p_stmt_pass(p):
     'stmt : PASS'
     p[0] = ('pass',)
 
+#------------------------------------
+# NEW
+
+def p_stmt_assignment(p):
+    'stmt : term EQUALS term NEWLINE'
+    p[0] = ('assignment', p[1], p[3])
+#-------------------------------------   
 def p_id_stmt_tail_assign(p):
     'id_stmt_tail : EQUALS expr'
     p[0] = ('assign', p[2])
@@ -89,6 +96,18 @@ def p_term_id_attr(p):
     'term : ID attr_chain'
     p[0] = ('var', p[1], p[2])
 
+#------------------------
+# new
+
+def p_term_self_attr(p):
+    'term : SELF DOT ID'
+    p[0] = ('self_attr', p[3])
+
+def p_term_id(p):
+    'term : ID'
+    p[0] = ('id', p[1])
+    
+#--------------------------
 def p_term_number(p):
     'term : NUMBER'
     p[0] = ('number', p[1])
