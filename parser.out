@@ -1,0 +1,1224 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> stmt_list
+Rule 2     stmt_list -> stmt stmt_list
+Rule 3     stmt_list -> stmt
+Rule 4     stmt -> CLASS ID COLON block
+Rule 5     stmt -> DEF method_name LPAREN param_list RPAREN COLON block
+Rule 6     stmt -> ID attr_chain id_stmt_tail
+Rule 7     stmt -> RETURN expr
+Rule 8     stmt -> RETURN
+Rule 9     stmt -> PASS
+Rule 10    stmt -> term EQUALS term NEWLINE
+Rule 11    id_stmt_tail -> EQUALS expr
+Rule 12    id_stmt_tail -> <empty>
+Rule 13    method_name -> ID
+Rule 14    method_name -> INIT
+Rule 15    param_list -> <empty>
+Rule 16    param_list -> SELF
+Rule 17    param_list -> SELF COMMA params
+Rule 18    param_list -> params
+Rule 19    params -> ID COMMA params
+Rule 20    params -> ID
+Rule 21    expr -> term binary_op term
+Rule 22    expr -> term
+Rule 23    term -> ID attr_chain
+Rule 24    term -> SELF DOT ID
+Rule 25    term -> ID
+Rule 26    term -> NUMBER
+Rule 27    term -> STRING
+Rule 28    term -> LPAREN expr RPAREN
+Rule 29    binary_op -> PLUS
+Rule 30    binary_op -> MINUS
+Rule 31    binary_op -> MUL
+Rule 32    binary_op -> DIV
+Rule 33    attr_chain -> <empty>
+Rule 34    attr_chain -> DOT ID attr_chain
+Rule 35    attr_chain -> LPAREN arg_list RPAREN attr_chain
+Rule 36    arg_list -> <empty>
+Rule 37    arg_list -> expr COMMA arg_list
+Rule 38    arg_list -> expr
+Rule 39    block -> NEWLINE INDENT stmt_list DEDENT
+
+Terminals, with rules where they appear
+
+CLASS                : 4
+COLON                : 4 5
+COMMA                : 17 19 37
+DEDENT               : 39
+DEF                  : 5
+DIV                  : 32
+DOT                  : 24 34
+EQUALS               : 10 11
+ID                   : 4 6 13 19 20 23 24 25 34
+INDENT               : 39
+INIT                 : 14
+LPAREN               : 5 28 35
+MINUS                : 30
+MUL                  : 31
+NEWLINE              : 10 39
+NUMBER               : 26
+PASS                 : 9
+PLUS                 : 29
+RETURN               : 7 8
+RPAREN               : 5 28 35
+SELF                 : 16 17 24
+STRING               : 27
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg_list             : 35 37
+attr_chain           : 6 23 34 35
+binary_op            : 21
+block                : 4 5
+expr                 : 7 11 28 37 38
+id_stmt_tail         : 6
+method_name          : 5
+param_list           : 5
+params               : 17 18 19
+program              : 0
+stmt                 : 2 3
+stmt_list            : 1 2 39
+term                 : 10 10 21 21 22
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . stmt_list
+    (2) stmt_list -> . stmt stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . CLASS ID COLON block
+    (5) stmt -> . DEF method_name LPAREN param_list RPAREN COLON block
+    (6) stmt -> . ID attr_chain id_stmt_tail
+    (7) stmt -> . RETURN expr
+    (8) stmt -> . RETURN
+    (9) stmt -> . PASS
+    (10) stmt -> . term EQUALS term NEWLINE
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    CLASS           shift and go to state 4
+    DEF             shift and go to state 6
+    ID              shift and go to state 5
+    RETURN          shift and go to state 8
+    PASS            shift and go to state 9
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    program                        shift and go to state 1
+    stmt_list                      shift and go to state 2
+    stmt                           shift and go to state 3
+    term                           shift and go to state 10
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> stmt_list .
+
+    $end            reduce using rule 1 (program -> stmt_list .)
+
+
+state 3
+
+    (2) stmt_list -> stmt . stmt_list
+    (3) stmt_list -> stmt .
+    (2) stmt_list -> . stmt stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . CLASS ID COLON block
+    (5) stmt -> . DEF method_name LPAREN param_list RPAREN COLON block
+    (6) stmt -> . ID attr_chain id_stmt_tail
+    (7) stmt -> . RETURN expr
+    (8) stmt -> . RETURN
+    (9) stmt -> . PASS
+    (10) stmt -> . term EQUALS term NEWLINE
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    $end            reduce using rule 3 (stmt_list -> stmt .)
+    DEDENT          reduce using rule 3 (stmt_list -> stmt .)
+    CLASS           shift and go to state 4
+    DEF             shift and go to state 6
+    ID              shift and go to state 5
+    RETURN          shift and go to state 8
+    PASS            shift and go to state 9
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    stmt                           shift and go to state 3
+    stmt_list                      shift and go to state 14
+    term                           shift and go to state 10
+
+state 4
+
+    (4) stmt -> CLASS . ID COLON block
+
+    ID              shift and go to state 15
+
+
+state 5
+
+    (6) stmt -> ID . attr_chain id_stmt_tail
+    (23) term -> ID . attr_chain
+    (25) term -> ID .
+    (33) attr_chain -> .
+    (34) attr_chain -> . DOT ID attr_chain
+    (35) attr_chain -> . LPAREN arg_list RPAREN attr_chain
+
+  ! reduce/reduce conflict for EQUALS resolved using rule 25 (term -> ID .)
+  ! shift/reduce conflict for LPAREN resolved as shift
+    EQUALS          reduce using rule 25 (term -> ID .)
+    CLASS           reduce using rule 33 (attr_chain -> .)
+    DEF             reduce using rule 33 (attr_chain -> .)
+    ID              reduce using rule 33 (attr_chain -> .)
+    RETURN          reduce using rule 33 (attr_chain -> .)
+    PASS            reduce using rule 33 (attr_chain -> .)
+    SELF            reduce using rule 33 (attr_chain -> .)
+    NUMBER          reduce using rule 33 (attr_chain -> .)
+    STRING          reduce using rule 33 (attr_chain -> .)
+    $end            reduce using rule 33 (attr_chain -> .)
+    DEDENT          reduce using rule 33 (attr_chain -> .)
+    DOT             shift and go to state 17
+    LPAREN          shift and go to state 18
+
+  ! EQUALS          [ reduce using rule 33 (attr_chain -> .) ]
+  ! LPAREN          [ reduce using rule 33 (attr_chain -> .) ]
+
+    attr_chain                     shift and go to state 16
+
+state 6
+
+    (5) stmt -> DEF . method_name LPAREN param_list RPAREN COLON block
+    (13) method_name -> . ID
+    (14) method_name -> . INIT
+
+    ID              shift and go to state 20
+    INIT            shift and go to state 21
+
+    method_name                    shift and go to state 19
+
+state 7
+
+    (28) term -> LPAREN . expr RPAREN
+    (21) expr -> . term binary_op term
+    (22) expr -> . term
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 24
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    expr                           shift and go to state 22
+    term                           shift and go to state 23
+
+state 8
+
+    (7) stmt -> RETURN . expr
+    (8) stmt -> RETURN .
+    (21) expr -> . term binary_op term
+    (22) expr -> . term
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SELF resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    CLASS           reduce using rule 8 (stmt -> RETURN .)
+    DEF             reduce using rule 8 (stmt -> RETURN .)
+    RETURN          reduce using rule 8 (stmt -> RETURN .)
+    PASS            reduce using rule 8 (stmt -> RETURN .)
+    $end            reduce using rule 8 (stmt -> RETURN .)
+    DEDENT          reduce using rule 8 (stmt -> RETURN .)
+    ID              shift and go to state 24
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+  ! ID              [ reduce using rule 8 (stmt -> RETURN .) ]
+  ! SELF            [ reduce using rule 8 (stmt -> RETURN .) ]
+  ! NUMBER          [ reduce using rule 8 (stmt -> RETURN .) ]
+  ! STRING          [ reduce using rule 8 (stmt -> RETURN .) ]
+  ! LPAREN          [ reduce using rule 8 (stmt -> RETURN .) ]
+
+    expr                           shift and go to state 25
+    term                           shift and go to state 23
+
+state 9
+
+    (9) stmt -> PASS .
+
+    CLASS           reduce using rule 9 (stmt -> PASS .)
+    DEF             reduce using rule 9 (stmt -> PASS .)
+    ID              reduce using rule 9 (stmt -> PASS .)
+    RETURN          reduce using rule 9 (stmt -> PASS .)
+    PASS            reduce using rule 9 (stmt -> PASS .)
+    SELF            reduce using rule 9 (stmt -> PASS .)
+    NUMBER          reduce using rule 9 (stmt -> PASS .)
+    STRING          reduce using rule 9 (stmt -> PASS .)
+    LPAREN          reduce using rule 9 (stmt -> PASS .)
+    $end            reduce using rule 9 (stmt -> PASS .)
+    DEDENT          reduce using rule 9 (stmt -> PASS .)
+
+
+state 10
+
+    (10) stmt -> term . EQUALS term NEWLINE
+
+    EQUALS          shift and go to state 26
+
+
+state 11
+
+    (24) term -> SELF . DOT ID
+
+    DOT             shift and go to state 27
+
+
+state 12
+
+    (26) term -> NUMBER .
+
+    EQUALS          reduce using rule 26 (term -> NUMBER .)
+    PLUS            reduce using rule 26 (term -> NUMBER .)
+    MINUS           reduce using rule 26 (term -> NUMBER .)
+    MUL             reduce using rule 26 (term -> NUMBER .)
+    DIV             reduce using rule 26 (term -> NUMBER .)
+    RPAREN          reduce using rule 26 (term -> NUMBER .)
+    CLASS           reduce using rule 26 (term -> NUMBER .)
+    DEF             reduce using rule 26 (term -> NUMBER .)
+    ID              reduce using rule 26 (term -> NUMBER .)
+    RETURN          reduce using rule 26 (term -> NUMBER .)
+    PASS            reduce using rule 26 (term -> NUMBER .)
+    SELF            reduce using rule 26 (term -> NUMBER .)
+    NUMBER          reduce using rule 26 (term -> NUMBER .)
+    STRING          reduce using rule 26 (term -> NUMBER .)
+    LPAREN          reduce using rule 26 (term -> NUMBER .)
+    $end            reduce using rule 26 (term -> NUMBER .)
+    DEDENT          reduce using rule 26 (term -> NUMBER .)
+    COMMA           reduce using rule 26 (term -> NUMBER .)
+    NEWLINE         reduce using rule 26 (term -> NUMBER .)
+
+
+state 13
+
+    (27) term -> STRING .
+
+    EQUALS          reduce using rule 27 (term -> STRING .)
+    PLUS            reduce using rule 27 (term -> STRING .)
+    MINUS           reduce using rule 27 (term -> STRING .)
+    MUL             reduce using rule 27 (term -> STRING .)
+    DIV             reduce using rule 27 (term -> STRING .)
+    RPAREN          reduce using rule 27 (term -> STRING .)
+    CLASS           reduce using rule 27 (term -> STRING .)
+    DEF             reduce using rule 27 (term -> STRING .)
+    ID              reduce using rule 27 (term -> STRING .)
+    RETURN          reduce using rule 27 (term -> STRING .)
+    PASS            reduce using rule 27 (term -> STRING .)
+    SELF            reduce using rule 27 (term -> STRING .)
+    NUMBER          reduce using rule 27 (term -> STRING .)
+    STRING          reduce using rule 27 (term -> STRING .)
+    LPAREN          reduce using rule 27 (term -> STRING .)
+    $end            reduce using rule 27 (term -> STRING .)
+    DEDENT          reduce using rule 27 (term -> STRING .)
+    COMMA           reduce using rule 27 (term -> STRING .)
+    NEWLINE         reduce using rule 27 (term -> STRING .)
+
+
+state 14
+
+    (2) stmt_list -> stmt stmt_list .
+
+    $end            reduce using rule 2 (stmt_list -> stmt stmt_list .)
+    DEDENT          reduce using rule 2 (stmt_list -> stmt stmt_list .)
+
+
+state 15
+
+    (4) stmt -> CLASS ID . COLON block
+
+    COLON           shift and go to state 28
+
+
+state 16
+
+    (6) stmt -> ID attr_chain . id_stmt_tail
+    (23) term -> ID attr_chain .
+    (11) id_stmt_tail -> . EQUALS expr
+    (12) id_stmt_tail -> .
+
+  ! shift/reduce conflict for EQUALS resolved as shift
+    EQUALS          shift and go to state 30
+    CLASS           reduce using rule 12 (id_stmt_tail -> .)
+    DEF             reduce using rule 12 (id_stmt_tail -> .)
+    ID              reduce using rule 12 (id_stmt_tail -> .)
+    RETURN          reduce using rule 12 (id_stmt_tail -> .)
+    PASS            reduce using rule 12 (id_stmt_tail -> .)
+    SELF            reduce using rule 12 (id_stmt_tail -> .)
+    NUMBER          reduce using rule 12 (id_stmt_tail -> .)
+    STRING          reduce using rule 12 (id_stmt_tail -> .)
+    LPAREN          reduce using rule 12 (id_stmt_tail -> .)
+    $end            reduce using rule 12 (id_stmt_tail -> .)
+    DEDENT          reduce using rule 12 (id_stmt_tail -> .)
+
+  ! EQUALS          [ reduce using rule 23 (term -> ID attr_chain .) ]
+
+    id_stmt_tail                   shift and go to state 29
+
+state 17
+
+    (34) attr_chain -> DOT . ID attr_chain
+
+    ID              shift and go to state 31
+
+
+state 18
+
+    (35) attr_chain -> LPAREN . arg_list RPAREN attr_chain
+    (36) arg_list -> .
+    (37) arg_list -> . expr COMMA arg_list
+    (38) arg_list -> . expr
+    (21) expr -> . term binary_op term
+    (22) expr -> . term
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    RPAREN          reduce using rule 36 (arg_list -> .)
+    ID              shift and go to state 24
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    arg_list                       shift and go to state 32
+    expr                           shift and go to state 33
+    term                           shift and go to state 23
+
+state 19
+
+    (5) stmt -> DEF method_name . LPAREN param_list RPAREN COLON block
+
+    LPAREN          shift and go to state 34
+
+
+state 20
+
+    (13) method_name -> ID .
+
+    LPAREN          reduce using rule 13 (method_name -> ID .)
+
+
+state 21
+
+    (14) method_name -> INIT .
+
+    LPAREN          reduce using rule 14 (method_name -> INIT .)
+
+
+state 22
+
+    (28) term -> LPAREN expr . RPAREN
+
+    RPAREN          shift and go to state 35
+
+
+state 23
+
+    (21) expr -> term . binary_op term
+    (22) expr -> term .
+    (29) binary_op -> . PLUS
+    (30) binary_op -> . MINUS
+    (31) binary_op -> . MUL
+    (32) binary_op -> . DIV
+
+    RPAREN          reduce using rule 22 (expr -> term .)
+    CLASS           reduce using rule 22 (expr -> term .)
+    DEF             reduce using rule 22 (expr -> term .)
+    ID              reduce using rule 22 (expr -> term .)
+    RETURN          reduce using rule 22 (expr -> term .)
+    PASS            reduce using rule 22 (expr -> term .)
+    SELF            reduce using rule 22 (expr -> term .)
+    NUMBER          reduce using rule 22 (expr -> term .)
+    STRING          reduce using rule 22 (expr -> term .)
+    LPAREN          reduce using rule 22 (expr -> term .)
+    $end            reduce using rule 22 (expr -> term .)
+    DEDENT          reduce using rule 22 (expr -> term .)
+    COMMA           reduce using rule 22 (expr -> term .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    MUL             shift and go to state 39
+    DIV             shift and go to state 40
+
+    binary_op                      shift and go to state 36
+
+state 24
+
+    (23) term -> ID . attr_chain
+    (25) term -> ID .
+    (33) attr_chain -> .
+    (34) attr_chain -> . DOT ID attr_chain
+    (35) attr_chain -> . LPAREN arg_list RPAREN attr_chain
+
+  ! reduce/reduce conflict for PLUS resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for MINUS resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for MUL resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for DIV resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for CLASS resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for DEF resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for ID resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for RETURN resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for PASS resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for SELF resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for NUMBER resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for STRING resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for $end resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for DEDENT resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for COMMA resolved using rule 25 (term -> ID .)
+  ! reduce/reduce conflict for NEWLINE resolved using rule 25 (term -> ID .)
+  ! shift/reduce conflict for LPAREN resolved as shift
+    PLUS            reduce using rule 25 (term -> ID .)
+    MINUS           reduce using rule 25 (term -> ID .)
+    MUL             reduce using rule 25 (term -> ID .)
+    DIV             reduce using rule 25 (term -> ID .)
+    RPAREN          reduce using rule 25 (term -> ID .)
+    CLASS           reduce using rule 25 (term -> ID .)
+    DEF             reduce using rule 25 (term -> ID .)
+    ID              reduce using rule 25 (term -> ID .)
+    RETURN          reduce using rule 25 (term -> ID .)
+    PASS            reduce using rule 25 (term -> ID .)
+    SELF            reduce using rule 25 (term -> ID .)
+    NUMBER          reduce using rule 25 (term -> ID .)
+    STRING          reduce using rule 25 (term -> ID .)
+    $end            reduce using rule 25 (term -> ID .)
+    DEDENT          reduce using rule 25 (term -> ID .)
+    COMMA           reduce using rule 25 (term -> ID .)
+    NEWLINE         reduce using rule 25 (term -> ID .)
+    DOT             shift and go to state 17
+    LPAREN          shift and go to state 18
+
+  ! LPAREN          [ reduce using rule 25 (term -> ID .) ]
+  ! PLUS            [ reduce using rule 33 (attr_chain -> .) ]
+  ! MINUS           [ reduce using rule 33 (attr_chain -> .) ]
+  ! MUL             [ reduce using rule 33 (attr_chain -> .) ]
+  ! DIV             [ reduce using rule 33 (attr_chain -> .) ]
+  ! RPAREN          [ reduce using rule 33 (attr_chain -> .) ]
+  ! CLASS           [ reduce using rule 33 (attr_chain -> .) ]
+  ! DEF             [ reduce using rule 33 (attr_chain -> .) ]
+  ! ID              [ reduce using rule 33 (attr_chain -> .) ]
+  ! RETURN          [ reduce using rule 33 (attr_chain -> .) ]
+  ! PASS            [ reduce using rule 33 (attr_chain -> .) ]
+  ! SELF            [ reduce using rule 33 (attr_chain -> .) ]
+  ! NUMBER          [ reduce using rule 33 (attr_chain -> .) ]
+  ! STRING          [ reduce using rule 33 (attr_chain -> .) ]
+  ! LPAREN          [ reduce using rule 33 (attr_chain -> .) ]
+  ! $end            [ reduce using rule 33 (attr_chain -> .) ]
+  ! DEDENT          [ reduce using rule 33 (attr_chain -> .) ]
+  ! COMMA           [ reduce using rule 33 (attr_chain -> .) ]
+  ! NEWLINE         [ reduce using rule 33 (attr_chain -> .) ]
+
+    attr_chain                     shift and go to state 41
+
+state 25
+
+    (7) stmt -> RETURN expr .
+
+    CLASS           reduce using rule 7 (stmt -> RETURN expr .)
+    DEF             reduce using rule 7 (stmt -> RETURN expr .)
+    ID              reduce using rule 7 (stmt -> RETURN expr .)
+    RETURN          reduce using rule 7 (stmt -> RETURN expr .)
+    PASS            reduce using rule 7 (stmt -> RETURN expr .)
+    SELF            reduce using rule 7 (stmt -> RETURN expr .)
+    NUMBER          reduce using rule 7 (stmt -> RETURN expr .)
+    STRING          reduce using rule 7 (stmt -> RETURN expr .)
+    LPAREN          reduce using rule 7 (stmt -> RETURN expr .)
+    $end            reduce using rule 7 (stmt -> RETURN expr .)
+    DEDENT          reduce using rule 7 (stmt -> RETURN expr .)
+
+
+state 26
+
+    (10) stmt -> term EQUALS . term NEWLINE
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 24
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 42
+
+state 27
+
+    (24) term -> SELF DOT . ID
+
+    ID              shift and go to state 43
+
+
+state 28
+
+    (4) stmt -> CLASS ID COLON . block
+    (39) block -> . NEWLINE INDENT stmt_list DEDENT
+
+    NEWLINE         shift and go to state 45
+
+    block                          shift and go to state 44
+
+state 29
+
+    (6) stmt -> ID attr_chain id_stmt_tail .
+
+    CLASS           reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    DEF             reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    ID              reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    RETURN          reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    PASS            reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    SELF            reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    NUMBER          reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    STRING          reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    LPAREN          reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    $end            reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+    DEDENT          reduce using rule 6 (stmt -> ID attr_chain id_stmt_tail .)
+
+
+state 30
+
+    (11) id_stmt_tail -> EQUALS . expr
+    (21) expr -> . term binary_op term
+    (22) expr -> . term
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 24
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    expr                           shift and go to state 46
+    term                           shift and go to state 23
+
+state 31
+
+    (34) attr_chain -> DOT ID . attr_chain
+    (33) attr_chain -> .
+    (34) attr_chain -> . DOT ID attr_chain
+    (35) attr_chain -> . LPAREN arg_list RPAREN attr_chain
+
+  ! shift/reduce conflict for LPAREN resolved as shift
+    EQUALS          reduce using rule 33 (attr_chain -> .)
+    CLASS           reduce using rule 33 (attr_chain -> .)
+    DEF             reduce using rule 33 (attr_chain -> .)
+    ID              reduce using rule 33 (attr_chain -> .)
+    RETURN          reduce using rule 33 (attr_chain -> .)
+    PASS            reduce using rule 33 (attr_chain -> .)
+    SELF            reduce using rule 33 (attr_chain -> .)
+    NUMBER          reduce using rule 33 (attr_chain -> .)
+    STRING          reduce using rule 33 (attr_chain -> .)
+    $end            reduce using rule 33 (attr_chain -> .)
+    DEDENT          reduce using rule 33 (attr_chain -> .)
+    PLUS            reduce using rule 33 (attr_chain -> .)
+    MINUS           reduce using rule 33 (attr_chain -> .)
+    MUL             reduce using rule 33 (attr_chain -> .)
+    DIV             reduce using rule 33 (attr_chain -> .)
+    RPAREN          reduce using rule 33 (attr_chain -> .)
+    COMMA           reduce using rule 33 (attr_chain -> .)
+    NEWLINE         reduce using rule 33 (attr_chain -> .)
+    DOT             shift and go to state 17
+    LPAREN          shift and go to state 18
+
+  ! LPAREN          [ reduce using rule 33 (attr_chain -> .) ]
+
+    attr_chain                     shift and go to state 47
+
+state 32
+
+    (35) attr_chain -> LPAREN arg_list . RPAREN attr_chain
+
+    RPAREN          shift and go to state 48
+
+
+state 33
+
+    (37) arg_list -> expr . COMMA arg_list
+    (38) arg_list -> expr .
+
+    COMMA           shift and go to state 49
+    RPAREN          reduce using rule 38 (arg_list -> expr .)
+
+
+state 34
+
+    (5) stmt -> DEF method_name LPAREN . param_list RPAREN COLON block
+    (15) param_list -> .
+    (16) param_list -> . SELF
+    (17) param_list -> . SELF COMMA params
+    (18) param_list -> . params
+    (19) params -> . ID COMMA params
+    (20) params -> . ID
+
+    RPAREN          reduce using rule 15 (param_list -> .)
+    SELF            shift and go to state 51
+    ID              shift and go to state 53
+
+    param_list                     shift and go to state 50
+    params                         shift and go to state 52
+
+state 35
+
+    (28) term -> LPAREN expr RPAREN .
+
+    EQUALS          reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    MINUS           reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    MUL             reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    DIV             reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    CLASS           reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    DEF             reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    ID              reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    RETURN          reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    PASS            reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    SELF            reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    NUMBER          reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    STRING          reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    LPAREN          reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    $end            reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    DEDENT          reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    COMMA           reduce using rule 28 (term -> LPAREN expr RPAREN .)
+    NEWLINE         reduce using rule 28 (term -> LPAREN expr RPAREN .)
+
+
+state 36
+
+    (21) expr -> term binary_op . term
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 24
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 54
+
+state 37
+
+    (29) binary_op -> PLUS .
+
+    ID              reduce using rule 29 (binary_op -> PLUS .)
+    SELF            reduce using rule 29 (binary_op -> PLUS .)
+    NUMBER          reduce using rule 29 (binary_op -> PLUS .)
+    STRING          reduce using rule 29 (binary_op -> PLUS .)
+    LPAREN          reduce using rule 29 (binary_op -> PLUS .)
+
+
+state 38
+
+    (30) binary_op -> MINUS .
+
+    ID              reduce using rule 30 (binary_op -> MINUS .)
+    SELF            reduce using rule 30 (binary_op -> MINUS .)
+    NUMBER          reduce using rule 30 (binary_op -> MINUS .)
+    STRING          reduce using rule 30 (binary_op -> MINUS .)
+    LPAREN          reduce using rule 30 (binary_op -> MINUS .)
+
+
+state 39
+
+    (31) binary_op -> MUL .
+
+    ID              reduce using rule 31 (binary_op -> MUL .)
+    SELF            reduce using rule 31 (binary_op -> MUL .)
+    NUMBER          reduce using rule 31 (binary_op -> MUL .)
+    STRING          reduce using rule 31 (binary_op -> MUL .)
+    LPAREN          reduce using rule 31 (binary_op -> MUL .)
+
+
+state 40
+
+    (32) binary_op -> DIV .
+
+    ID              reduce using rule 32 (binary_op -> DIV .)
+    SELF            reduce using rule 32 (binary_op -> DIV .)
+    NUMBER          reduce using rule 32 (binary_op -> DIV .)
+    STRING          reduce using rule 32 (binary_op -> DIV .)
+    LPAREN          reduce using rule 32 (binary_op -> DIV .)
+
+
+state 41
+
+    (23) term -> ID attr_chain .
+
+    PLUS            reduce using rule 23 (term -> ID attr_chain .)
+    MINUS           reduce using rule 23 (term -> ID attr_chain .)
+    MUL             reduce using rule 23 (term -> ID attr_chain .)
+    DIV             reduce using rule 23 (term -> ID attr_chain .)
+    RPAREN          reduce using rule 23 (term -> ID attr_chain .)
+    CLASS           reduce using rule 23 (term -> ID attr_chain .)
+    DEF             reduce using rule 23 (term -> ID attr_chain .)
+    ID              reduce using rule 23 (term -> ID attr_chain .)
+    RETURN          reduce using rule 23 (term -> ID attr_chain .)
+    PASS            reduce using rule 23 (term -> ID attr_chain .)
+    SELF            reduce using rule 23 (term -> ID attr_chain .)
+    NUMBER          reduce using rule 23 (term -> ID attr_chain .)
+    STRING          reduce using rule 23 (term -> ID attr_chain .)
+    LPAREN          reduce using rule 23 (term -> ID attr_chain .)
+    $end            reduce using rule 23 (term -> ID attr_chain .)
+    DEDENT          reduce using rule 23 (term -> ID attr_chain .)
+    COMMA           reduce using rule 23 (term -> ID attr_chain .)
+    NEWLINE         reduce using rule 23 (term -> ID attr_chain .)
+
+
+state 42
+
+    (10) stmt -> term EQUALS term . NEWLINE
+
+    NEWLINE         shift and go to state 55
+
+
+state 43
+
+    (24) term -> SELF DOT ID .
+
+    EQUALS          reduce using rule 24 (term -> SELF DOT ID .)
+    PLUS            reduce using rule 24 (term -> SELF DOT ID .)
+    MINUS           reduce using rule 24 (term -> SELF DOT ID .)
+    MUL             reduce using rule 24 (term -> SELF DOT ID .)
+    DIV             reduce using rule 24 (term -> SELF DOT ID .)
+    RPAREN          reduce using rule 24 (term -> SELF DOT ID .)
+    CLASS           reduce using rule 24 (term -> SELF DOT ID .)
+    DEF             reduce using rule 24 (term -> SELF DOT ID .)
+    ID              reduce using rule 24 (term -> SELF DOT ID .)
+    RETURN          reduce using rule 24 (term -> SELF DOT ID .)
+    PASS            reduce using rule 24 (term -> SELF DOT ID .)
+    SELF            reduce using rule 24 (term -> SELF DOT ID .)
+    NUMBER          reduce using rule 24 (term -> SELF DOT ID .)
+    STRING          reduce using rule 24 (term -> SELF DOT ID .)
+    LPAREN          reduce using rule 24 (term -> SELF DOT ID .)
+    $end            reduce using rule 24 (term -> SELF DOT ID .)
+    DEDENT          reduce using rule 24 (term -> SELF DOT ID .)
+    COMMA           reduce using rule 24 (term -> SELF DOT ID .)
+    NEWLINE         reduce using rule 24 (term -> SELF DOT ID .)
+
+
+state 44
+
+    (4) stmt -> CLASS ID COLON block .
+
+    CLASS           reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    DEF             reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    ID              reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    RETURN          reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    PASS            reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    SELF            reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    NUMBER          reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    STRING          reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    LPAREN          reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    $end            reduce using rule 4 (stmt -> CLASS ID COLON block .)
+    DEDENT          reduce using rule 4 (stmt -> CLASS ID COLON block .)
+
+
+state 45
+
+    (39) block -> NEWLINE . INDENT stmt_list DEDENT
+
+    INDENT          shift and go to state 56
+
+
+state 46
+
+    (11) id_stmt_tail -> EQUALS expr .
+
+    CLASS           reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    DEF             reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    ID              reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    RETURN          reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    PASS            reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    SELF            reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    NUMBER          reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    STRING          reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    LPAREN          reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    $end            reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+    DEDENT          reduce using rule 11 (id_stmt_tail -> EQUALS expr .)
+
+
+state 47
+
+    (34) attr_chain -> DOT ID attr_chain .
+
+    EQUALS          reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    CLASS           reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    DEF             reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    ID              reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    RETURN          reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    PASS            reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    SELF            reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    NUMBER          reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    STRING          reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    LPAREN          reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    $end            reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    DEDENT          reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    PLUS            reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    MINUS           reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    MUL             reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    DIV             reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    RPAREN          reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    COMMA           reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+    NEWLINE         reduce using rule 34 (attr_chain -> DOT ID attr_chain .)
+
+
+state 48
+
+    (35) attr_chain -> LPAREN arg_list RPAREN . attr_chain
+    (33) attr_chain -> .
+    (34) attr_chain -> . DOT ID attr_chain
+    (35) attr_chain -> . LPAREN arg_list RPAREN attr_chain
+
+  ! shift/reduce conflict for LPAREN resolved as shift
+    EQUALS          reduce using rule 33 (attr_chain -> .)
+    CLASS           reduce using rule 33 (attr_chain -> .)
+    DEF             reduce using rule 33 (attr_chain -> .)
+    ID              reduce using rule 33 (attr_chain -> .)
+    RETURN          reduce using rule 33 (attr_chain -> .)
+    PASS            reduce using rule 33 (attr_chain -> .)
+    SELF            reduce using rule 33 (attr_chain -> .)
+    NUMBER          reduce using rule 33 (attr_chain -> .)
+    STRING          reduce using rule 33 (attr_chain -> .)
+    $end            reduce using rule 33 (attr_chain -> .)
+    DEDENT          reduce using rule 33 (attr_chain -> .)
+    PLUS            reduce using rule 33 (attr_chain -> .)
+    MINUS           reduce using rule 33 (attr_chain -> .)
+    MUL             reduce using rule 33 (attr_chain -> .)
+    DIV             reduce using rule 33 (attr_chain -> .)
+    RPAREN          reduce using rule 33 (attr_chain -> .)
+    COMMA           reduce using rule 33 (attr_chain -> .)
+    NEWLINE         reduce using rule 33 (attr_chain -> .)
+    DOT             shift and go to state 17
+    LPAREN          shift and go to state 18
+
+  ! LPAREN          [ reduce using rule 33 (attr_chain -> .) ]
+
+    attr_chain                     shift and go to state 57
+
+state 49
+
+    (37) arg_list -> expr COMMA . arg_list
+    (36) arg_list -> .
+    (37) arg_list -> . expr COMMA arg_list
+    (38) arg_list -> . expr
+    (21) expr -> . term binary_op term
+    (22) expr -> . term
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    RPAREN          reduce using rule 36 (arg_list -> .)
+    ID              shift and go to state 24
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    expr                           shift and go to state 33
+    arg_list                       shift and go to state 58
+    term                           shift and go to state 23
+
+state 50
+
+    (5) stmt -> DEF method_name LPAREN param_list . RPAREN COLON block
+
+    RPAREN          shift and go to state 59
+
+
+state 51
+
+    (16) param_list -> SELF .
+    (17) param_list -> SELF . COMMA params
+
+    RPAREN          reduce using rule 16 (param_list -> SELF .)
+    COMMA           shift and go to state 60
+
+
+state 52
+
+    (18) param_list -> params .
+
+    RPAREN          reduce using rule 18 (param_list -> params .)
+
+
+state 53
+
+    (19) params -> ID . COMMA params
+    (20) params -> ID .
+
+    COMMA           shift and go to state 61
+    RPAREN          reduce using rule 20 (params -> ID .)
+
+
+state 54
+
+    (21) expr -> term binary_op term .
+
+    RPAREN          reduce using rule 21 (expr -> term binary_op term .)
+    CLASS           reduce using rule 21 (expr -> term binary_op term .)
+    DEF             reduce using rule 21 (expr -> term binary_op term .)
+    ID              reduce using rule 21 (expr -> term binary_op term .)
+    RETURN          reduce using rule 21 (expr -> term binary_op term .)
+    PASS            reduce using rule 21 (expr -> term binary_op term .)
+    SELF            reduce using rule 21 (expr -> term binary_op term .)
+    NUMBER          reduce using rule 21 (expr -> term binary_op term .)
+    STRING          reduce using rule 21 (expr -> term binary_op term .)
+    LPAREN          reduce using rule 21 (expr -> term binary_op term .)
+    $end            reduce using rule 21 (expr -> term binary_op term .)
+    DEDENT          reduce using rule 21 (expr -> term binary_op term .)
+    COMMA           reduce using rule 21 (expr -> term binary_op term .)
+
+
+state 55
+
+    (10) stmt -> term EQUALS term NEWLINE .
+
+    CLASS           reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    DEF             reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    ID              reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    RETURN          reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    PASS            reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    SELF            reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    NUMBER          reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    STRING          reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    LPAREN          reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    $end            reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+    DEDENT          reduce using rule 10 (stmt -> term EQUALS term NEWLINE .)
+
+
+state 56
+
+    (39) block -> NEWLINE INDENT . stmt_list DEDENT
+    (2) stmt_list -> . stmt stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . CLASS ID COLON block
+    (5) stmt -> . DEF method_name LPAREN param_list RPAREN COLON block
+    (6) stmt -> . ID attr_chain id_stmt_tail
+    (7) stmt -> . RETURN expr
+    (8) stmt -> . RETURN
+    (9) stmt -> . PASS
+    (10) stmt -> . term EQUALS term NEWLINE
+    (23) term -> . ID attr_chain
+    (24) term -> . SELF DOT ID
+    (25) term -> . ID
+    (26) term -> . NUMBER
+    (27) term -> . STRING
+    (28) term -> . LPAREN expr RPAREN
+
+    CLASS           shift and go to state 4
+    DEF             shift and go to state 6
+    ID              shift and go to state 5
+    RETURN          shift and go to state 8
+    PASS            shift and go to state 9
+    SELF            shift and go to state 11
+    NUMBER          shift and go to state 12
+    STRING          shift and go to state 13
+    LPAREN          shift and go to state 7
+
+    stmt_list                      shift and go to state 62
+    stmt                           shift and go to state 3
+    term                           shift and go to state 10
+
+state 57
+
+    (35) attr_chain -> LPAREN arg_list RPAREN attr_chain .
+
+    EQUALS          reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    CLASS           reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    DEF             reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    ID              reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    RETURN          reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    PASS            reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    SELF            reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    NUMBER          reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    STRING          reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    LPAREN          reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    $end            reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    DEDENT          reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    PLUS            reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    MINUS           reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    MUL             reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    DIV             reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    RPAREN          reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    COMMA           reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+    NEWLINE         reduce using rule 35 (attr_chain -> LPAREN arg_list RPAREN attr_chain .)
+
+
+state 58
+
+    (37) arg_list -> expr COMMA arg_list .
+
+    RPAREN          reduce using rule 37 (arg_list -> expr COMMA arg_list .)
+
+
+state 59
+
+    (5) stmt -> DEF method_name LPAREN param_list RPAREN . COLON block
+
+    COLON           shift and go to state 63
+
+
+state 60
+
+    (17) param_list -> SELF COMMA . params
+    (19) params -> . ID COMMA params
+    (20) params -> . ID
+
+    ID              shift and go to state 53
+
+    params                         shift and go to state 64
+
+state 61
+
+    (19) params -> ID COMMA . params
+    (19) params -> . ID COMMA params
+    (20) params -> . ID
+
+    ID              shift and go to state 53
+
+    params                         shift and go to state 65
+
+state 62
+
+    (39) block -> NEWLINE INDENT stmt_list . DEDENT
+
+    DEDENT          shift and go to state 66
+
+
+state 63
+
+    (5) stmt -> DEF method_name LPAREN param_list RPAREN COLON . block
+    (39) block -> . NEWLINE INDENT stmt_list DEDENT
+
+    NEWLINE         shift and go to state 45
+
+    block                          shift and go to state 67
+
+state 64
+
+    (17) param_list -> SELF COMMA params .
+
+    RPAREN          reduce using rule 17 (param_list -> SELF COMMA params .)
+
+
+state 65
+
+    (19) params -> ID COMMA params .
+
+    RPAREN          reduce using rule 19 (params -> ID COMMA params .)
+
+
+state 66
+
+    (39) block -> NEWLINE INDENT stmt_list DEDENT .
+
+    CLASS           reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    DEF             reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    ID              reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    RETURN          reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    PASS            reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    SELF            reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    NUMBER          reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    STRING          reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    LPAREN          reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    $end            reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+    DEDENT          reduce using rule 39 (block -> NEWLINE INDENT stmt_list DEDENT .)
+
+
+state 67
+
+    (5) stmt -> DEF method_name LPAREN param_list RPAREN COLON block .
+
+    CLASS           reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    DEF             reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    ID              reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    RETURN          reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    PASS            reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    SELF            reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    NUMBER          reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    STRING          reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    LPAREN          reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    $end            reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+    DEDENT          reduce using rule 5 (stmt -> DEF method_name LPAREN param_list RPAREN COLON block .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LPAREN in state 5 resolved as shift
+WARNING: shift/reduce conflict for ID in state 8 resolved as shift
+WARNING: shift/reduce conflict for SELF in state 8 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 8 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 8 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 8 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 16 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 24 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 31 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 48 resolved as shift
+WARNING: reduce/reduce conflict in state 5 resolved using rule (term -> ID)
+WARNING: rejected rule (attr_chain -> <empty>) in state 5
+WARNING: reduce/reduce conflict in state 24 resolved using rule (term -> ID)
+WARNING: rejected rule (attr_chain -> <empty>) in state 24
