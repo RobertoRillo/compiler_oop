@@ -43,6 +43,10 @@ def p_stmt_method_call(p):
     'stmt : ID DOT ID LPAREN arg_list RPAREN NEWLINE'
     p[0] = ('method_call', p[1], p[3], p[5])
 
+def p_stmt_function_call(p):
+    'stmt : ID LPAREN arg_list RPAREN NEWLINE'
+    p[0] = ('function_call', p[1], p[3])
+
 def p_stmt_return_expr(p):
     'stmt : RETURN expr NEWLINE'
     p[0] = ('return', p[2])
@@ -95,9 +99,13 @@ def p_expr_term(p):
     'expr : term'
     p[0] = p[1]
 
-def p_term_method_call(p):
+def p_term_constructor_call(p):
     'term : ID LPAREN arg_list RPAREN'
     p[0] = ('constructor_call', p[1], p[3])
+
+def p_expr_function_call(p):
+    'expr : ID LPAREN arg_list RPAREN'
+    p[0] = ('function_call', p[1], p[3])
 
 def p_term_self_attr(p):
     'term : SELF DOT ID'

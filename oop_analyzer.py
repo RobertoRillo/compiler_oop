@@ -69,6 +69,20 @@ class OOPAnalyzer:
                 self.instances_found.append(class_name)
                 self.details.append(f"✓ Instancia creada de: {class_name}")
             
+            elif node_type == 'function_call':
+                # Distinguir entre llamadas a funciones y constructores
+                func_name = node[1]
+                args = node[2]
+                
+                # Si la función tiene el mismo nombre que una clase definida, podría ser un constructor
+                if func_name in self.classes_found:
+                    self.has_instance_creation = True
+                    self.instances_found.append(func_name)
+                    self.details.append(f"✓ Posible instancia creada de: {func_name}")
+                else:
+                    # Es una llamada a función regular (no OOP)
+                    self.details.append(f"• Llamada a función: {func_name}()")
+            
             elif node_type == 'method_call':
                 self.has_method_call = True
                 obj_name = node[1]
