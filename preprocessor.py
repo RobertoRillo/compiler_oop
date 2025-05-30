@@ -6,7 +6,9 @@ ILLEGAL_PATTERNS = [
 ]
 
 def is_illegal_line(line):
-    return any(p in line for p in ILLEGAL_PATTERNS)
+    # No considerar __init__ como ilegal
+    line_without_init = line.replace('__init__', 'INIT_PLACEHOLDER')
+    return any(p in line_without_init for p in ILLEGAL_PATTERNS)
 
 def get_indent_level(line):
     return len(line) - len(line.lstrip(' '))
@@ -28,10 +30,11 @@ def preprocess_code(file_path):
 
         indent = get_indent_level(line)
 
-        # Quitar comentarios inline
-        comment_index = line.find('#')
-        if comment_index != -1:
-            line = line[:comment_index]
+        # Quitar comentarios inline (pero preservar líneas que solo son comentarios)
+        if '#' in line and not line.strip().startswith('#'):
+            comment_index = line.find('#')
+            line = line[:comment_index].rstrip() + '\n'
+            stripped = line.strip()
 
         if is_illegal_line(line):
             print(f"Ignoring unsupported line {i+1}: {stripped}")
@@ -59,7 +62,7 @@ def preprocess_code(file_path):
                 body_ok = False
                 j = i + 1
                 while j < len(lines) and get_indent_level(lines[j]) > block_indent:
-                    if not is_illegal_line(lines[j]):
+                    if not is_illegal_line(lines[j]) and lines[j].strip():
                         body_ok = True
                         break
                     j += 1
@@ -70,11 +73,10 @@ def preprocess_code(file_path):
 
         # Línea aceptada
         processed_lines.append(line)
-        if stripped.startswith(('def ', 'class ')) and stripped.endswith(':'):
-            processed_lines.append('\n')  # <-- Esto es lo nuevo
         i += 1
 
-    # Eliminar líneas vacías finales
-    processed_lines = [line for line in processed_lines if line.strip()]
+    # Agregar newline final si no existe
+    if processed_lines and not processed_lines[-1].endswith('\n'):
+        processed_lines[-1] += '\n'
 
     return processed_lines

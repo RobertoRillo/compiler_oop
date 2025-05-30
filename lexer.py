@@ -14,7 +14,6 @@ reserved = {
     'return': 'RETURN',
     'pass': 'PASS',
     'self': 'SELF',
-    '__init__': 'INIT',
 }
 
 t_EQUALS = r'='
@@ -60,6 +59,11 @@ def create_token(type_, t):
     tok.lineno = t.lineno
     tok.lexpos = t.lexpos
     return tok
+
+def t_INIT(t):
+    r'__init__'
+    t.type = 'INIT'
+    return t
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'

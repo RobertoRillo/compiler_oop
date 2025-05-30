@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CLASS COLON COMMA DEDENT DEF DIV DOT EQUALS ID INDENT INIT LPAREN MINUS MUL NEWLINE NUMBER PASS PLUS RETURN RPAREN SELF STRINGprogram : stmt_liststmt_list : stmt stmt_liststmt_list : stmtstmt : CLASS ID COLON blockstmt : DEF method_name LPAREN param_list RPAREN COLON blockstmt : ID attr_chain id_stmt_tailstmt : RETURN exprstmt : RETURNstmt : PASSstmt : term EQUALS term NEWLINEid_stmt_tail : EQUALS exprid_stmt_tail : method_name : IDmethod_name : INITparam_list : param_list : SELFparam_list : SELF COMMA paramsparam_list : paramsparams : ID COMMA paramsparams : IDexpr : term binary_op termexpr : termterm : ID attr_chainterm : SELF DOT IDterm : IDterm : NUMBERterm : STRINGterm : LPAREN expr RPARENbinary_op : PLUS\n                 | MINUS\n                 | MUL\n                 | DIVattr_chain : attr_chain : DOT ID attr_chainattr_chain : LPAREN arg_list RPAREN attr_chainarg_list : arg_list : expr COMMA arg_listarg_list : exprblock : NEWLINE INDENT stmt_list DEDENT'
+_lr_signature = 'leftPLUSMINUSleftMULDIVCLASS COLON COMMA DEDENT DEF DIV DOT EQUALS ID INDENT INIT LPAREN MINUS MUL NEWLINE NUMBER PASS PLUS RETURN RPAREN SELF STRINGprogram : stmt_liststmt_list : stmt stmt_liststmt_list : stmtstmt : CLASS ID COLON NEWLINE blockstmt : DEF method_name LPAREN param_list RPAREN COLON NEWLINE blockstmt : ID EQUALS expr NEWLINEstmt : ID DOT ID EQUALS expr NEWLINEstmt : SELF DOT ID EQUALS expr NEWLINEstmt : ID DOT ID LPAREN arg_list RPAREN NEWLINEstmt : RETURN expr NEWLINEstmt : RETURN NEWLINEstmt : PASS NEWLINEmethod_name : IDmethod_name : INITparam_list : param_list : SELFparam_list : SELF COMMA paramsparam_list : paramsparams : ID COMMA paramsparams : IDexpr : expr binary_op exprexpr : termterm : ID LPAREN arg_list RPARENterm : SELF DOT IDterm : ID DOT IDterm : IDterm : NUMBERterm : STRINGterm : LPAREN expr RPARENbinary_op : PLUS\n                 | MINUS\n                 | MUL\n                 | DIVarg_list : arg_list : expr COMMA arg_listarg_list : exprblock : INDENT stmt_list DEDENT'
     
-_lr_action_items = {'CLASS':([0,3,5,8,9,12,13,16,23,24,25,29,31,35,41,43,44,46,47,48,54,55,56,57,66,67,],[4,4,-33,-8,-9,-26,-27,-12,-22,-25,-7,-6,-33,-28,-23,-24,-4,-11,-34,-33,-21,-10,4,-35,-39,-5,]),'DEF':([0,3,5,8,9,12,13,16,23,24,25,29,31,35,41,43,44,46,47,48,54,55,56,57,66,67,],[6,6,-33,-8,-9,-26,-27,-12,-22,-25,-7,-6,-33,-28,-23,-24,-4,-11,-34,-33,-21,-10,6,-35,-39,-5,]),'ID':([0,3,4,5,6,7,8,9,12,13,16,17,18,23,24,25,26,27,29,30,31,34,35,36,37,38,39,40,41,43,44,46,47,48,49,54,55,56,57,60,61,66,67,],[5,5,15,-33,20,24,24,-9,-26,-27,-12,31,24,-22,-25,-7,24,43,-6,24,-33,53,-28,24,-29,-30,-31,-32,-23,-24,-4,-11,-34,-33,24,-21,-10,5,-35,53,53,-39,-5,]),'RETURN':([0,3,5,8,9,12,13,16,23,24,25,29,31,35,41,43,44,46,47,48,54,55,56,57,66,67,],[8,8,-33,-8,-9,-26,-27,-12,-22,-25,-7,-6,-33,-28,-23,-24,-4,-11,-34,-33,-21,-10,8,-35,-39,-5,]),'PASS':([0,3,5,8,9,12,13,16,23,24,25,29,31,35,41,43,44,46,47,48,54,55,56,57,66,67,],[9,9,-33,-8,-9,-26,-27,-12,-22,-25,-7,-6,-33,-28,-23,-24,-4,-11,-34,-33,-21,-10,9,-35,-39,-5,]),'SELF':([0,3,5,7,8,9,12,13,16,18,23,24,25,26,29,30,31,34,35,36,37,38,39,40,41,43,44,46,47,48,49,54,55,56,57,66,67,],[11,11,-33,11,11,-9,-26,-27,-12,11,-22,-25,-7,11,-6,11,-33,51,-28,11,-29,-30,-31,-32,-23,-24,-4,-11,-34,-33,11,-21,-10,11,-35,-39,-5,]),'NUMBER':([0,3,5,7,8,9,12,13,16,18,23,24,25,26,29,30,31,35,36,37,38,39,40,41,43,44,46,47,48,49,54,55,56,57,66,67,],[12,12,-33,12,12,-9,-26,-27,-12,12,-22,-25,-7,12,-6,12,-33,-28,12,-29,-30,-31,-32,-23,-24,-4,-11,-34,-33,12,-21,-10,12,-35,-39,-5,]),'STRING':([0,3,5,7,8,9,12,13,16,18,23,24,25,26,29,30,31,35,36,37,38,39,40,41,43,44,46,47,48,49,54,55,56,57,66,67,],[13,13,-33,13,13,-9,-26,-27,-12,13,-22,-25,-7,13,-6,13,-33,-28,13,-29,-30,-31,-32,-23,-24,-4,-11,-34,-33,13,-21,-10,13,-35,-39,-5,]),'LPAREN':([0,3,5,7,8,9,12,13,16,18,19,20,21,23,24,25,26,29,30,31,35,36,37,38,39,40,41,43,44,46,47,48,49,54,55,56,57,66,67,],[7,7,18,7,7,-9,-26,-27,-12,7,34,-13,-14,-22,18,-7,7,-6,7,18,-28,7,-29,-30,-31,-32,-23,-24,-4,-11,-34,18,7,-21,-10,7,-35,-39,-5,]),'$end':([1,2,3,5,8,9,12,13,14,16,23,24,25,29,31,35,41,43,44,46,47,48,54,55,57,66,67,],[0,-1,-3,-33,-8,-9,-26,-27,-2,-12,-22,-25,-7,-6,-33,-28,-23,-24,-4,-11,-34,-33,-21,-10,-35,-39,-5,]),'DEDENT':([3,5,8,9,12,13,14,16,23,24,25,29,31,35,41,43,44,46,47,48,54,55,57,62,66,67,],[-3,-33,-8,-9,-26,-27,-2,-12,-22,-25,-7,-6,-33,-28,-23,-24,-4,-11,-34,-33,-21,-10,-35,66,-39,-5,]),'EQUALS':([5,10,12,13,16,31,35,43,47,48,57,],[-25,26,-26,-27,30,-33,-28,-24,-34,-33,-35,]),'DOT':([5,11,24,31,48,],[17,27,17,17,17,]),'INIT':([6,],[21,]),'PLUS':([12,13,23,24,31,35,41,43,47,48,57,],[-26,-27,37,-25,-33,-28,-23,-24,-34,-33,-35,]),'MINUS':([12,13,23,24,31,35,41,43,47,48,57,],[-26,-27,38,-25,-33,-28,-23,-24,-34,-33,-35,]),'MUL':([12,13,23,24,31,35,41,43,47,48,57,],[-26,-27,39,-25,-33,-28,-23,-24,-34,-33,-35,]),'DIV':([12,13,23,24,31,35,41,43,47,48,57,],[-26,-27,40,-25,-33,-28,-23,-24,-34,-33,-35,]),'RPAREN':([12,13,18,22,23,24,31,32,33,34,35,41,43,47,48,49,50,51,52,53,54,57,58,64,65,],[-26,-27,-36,35,-22,-25,-33,48,-38,-15,-28,-23,-24,-34,-33,-36,59,-16,-18,-20,-21,-35,-37,-17,-19,]),'COMMA':([12,13,23,24,31,33,35,41,43,47,48,51,53,54,57,],[-26,-27,-22,-25,-33,49,-28,-23,-24,-34,-33,60,61,-21,-35,]),'NEWLINE':([12,13,24,28,31,35,41,42,43,47,48,57,63,],[-26,-27,-25,45,-33,-28,-23,55,-24,-34,-33,-35,45,]),'COLON':([15,59,],[28,63,]),'INDENT':([45,],[56,]),}
+_lr_action_items = {'CLASS':([0,3,19,26,32,43,57,58,68,73,75,76,78,],[4,4,-11,-12,-10,-6,-4,4,-7,-8,-37,-9,-5,]),'DEF':([0,3,19,26,32,43,57,58,68,73,75,76,78,],[6,6,-11,-12,-10,-6,-4,6,-7,-8,-37,-9,-5,]),'ID':([0,3,4,6,8,12,13,17,19,22,26,30,32,33,34,35,36,37,38,39,41,43,44,45,50,57,58,62,63,66,68,73,75,76,78,],[5,5,11,15,21,21,29,31,-11,21,-12,49,-10,21,-30,-31,-32,-33,21,54,56,-6,21,21,21,-4,5,49,49,21,-7,-8,-37,-9,-5,]),'SELF':([0,3,8,12,19,22,26,30,32,33,34,35,36,37,38,43,44,45,50,57,58,66,68,73,75,76,78,],[7,7,23,23,-11,23,-12,47,-10,23,-30,-31,-32,-33,23,-6,23,23,23,-4,7,23,-7,-8,-37,-9,-5,]),'RETURN':([0,3,19,26,32,43,57,58,68,73,75,76,78,],[8,8,-11,-12,-10,-6,-4,8,-7,-8,-37,-9,-5,]),'PASS':([0,3,19,26,32,43,57,58,68,73,75,76,78,],[9,9,-11,-12,-10,-6,-4,9,-7,-8,-37,-9,-5,]),'$end':([1,2,3,10,19,26,32,43,57,68,73,75,76,78,],[0,-1,-3,-2,-11,-12,-10,-6,-4,-7,-8,-37,-9,-5,]),'DEDENT':([3,10,19,26,32,43,57,67,68,73,75,76,78,],[-3,-2,-11,-12,-10,-6,-4,75,-7,-8,-37,-9,-5,]),'EQUALS':([5,29,31,],[12,44,50,]),'DOT':([5,7,21,23,],[13,17,39,41,]),'INIT':([6,],[16,]),'NEWLINE':([8,9,18,20,21,24,25,27,28,51,54,55,56,59,64,65,69,70,],[19,26,32,-22,-26,-27,-28,42,43,-21,-25,-29,-24,68,73,-23,76,77,]),'NUMBER':([8,12,22,33,34,35,36,37,38,44,45,50,66,],[24,24,24,24,-30,-31,-32,-33,24,24,24,24,24,]),'STRING':([8,12,22,33,34,35,36,37,38,44,45,50,66,],[25,25,25,25,-30,-31,-32,-33,25,25,25,25,25,]),'LPAREN':([8,12,14,15,16,21,22,29,33,34,35,36,37,38,44,45,50,66,],[22,22,30,-13,-14,38,22,45,22,-30,-31,-32,-33,22,22,22,22,22,]),'COLON':([11,61,],[27,70,]),'PLUS':([18,20,21,24,25,28,40,51,53,54,55,56,59,64,65,],[34,-22,-26,-27,-28,34,34,34,34,-25,-29,-24,34,34,-23,]),'MINUS':([18,20,21,24,25,28,40,51,53,54,55,56,59,64,65,],[35,-22,-26,-27,-28,35,35,35,35,-25,-29,-24,35,35,-23,]),'MUL':([18,20,21,24,25,28,40,51,53,54,55,56,59,64,65,],[36,-22,-26,-27,-28,36,36,36,36,-25,-29,-24,36,36,-23,]),'DIV':([18,20,21,24,25,28,40,51,53,54,55,56,59,64,65,],[37,-22,-26,-27,-28,37,37,37,37,-25,-29,-24,37,37,-23,]),'RPAREN':([20,21,24,25,30,38,40,45,46,47,48,49,51,52,53,54,55,56,60,65,66,71,72,74,],[-22,-26,-27,-28,-15,-34,55,-34,61,-16,-18,-20,-21,65,-36,-25,-29,-24,69,-23,-34,-17,-19,-35,]),'COMMA':([20,21,24,25,47,49,51,53,54,55,56,65,],[-22,-26,-27,-28,62,63,-21,66,-25,-29,-24,-23,]),'INDENT':([42,77,],[58,58,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'stmt_list':([0,3,56,],[2,14,62,]),'stmt':([0,3,56,],[3,3,3,]),'term':([0,3,7,8,18,26,30,36,49,56,],[10,10,23,23,23,42,23,54,23,10,]),'attr_chain':([5,24,31,48,],[16,41,47,57,]),'method_name':([6,],[19,]),'expr':([7,8,18,30,49,],[22,25,33,46,33,]),'id_stmt_tail':([16,],[29,]),'arg_list':([18,49,],[32,58,]),'binary_op':([23,],[36,]),'block':([28,63,],[44,67,]),'param_list':([34,],[50,]),'params':([34,60,61,],[52,64,65,]),}
+_lr_goto_items = {'program':([0,],[1,]),'stmt_list':([0,3,58,],[2,10,67,]),'stmt':([0,3,58,],[3,3,3,]),'method_name':([6,],[14,]),'expr':([8,12,22,33,38,44,45,50,66,],[18,28,40,51,53,59,53,64,53,]),'term':([8,12,22,33,38,44,45,50,66,],[20,20,20,20,20,20,20,20,20,]),'binary_op':([18,28,40,51,53,59,64,],[33,33,33,33,33,33,33,]),'param_list':([30,],[46,]),'params':([30,62,63,],[48,71,72,]),'arg_list':([38,45,66,],[52,60,74,]),'block':([42,77,],[57,78,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,43 +27,41 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> stmt_list','program',1,'p_program','parser.py',5),
-  ('stmt_list -> stmt stmt_list','stmt_list',2,'p_stmt_list_multiple','parser.py',9),
-  ('stmt_list -> stmt','stmt_list',1,'p_stmt_list_single','parser.py',13),
-  ('stmt -> CLASS ID COLON block','stmt',4,'p_stmt_class','parser.py',17),
-  ('stmt -> DEF method_name LPAREN param_list RPAREN COLON block','stmt',7,'p_stmt_method','parser.py',21),
-  ('stmt -> ID attr_chain id_stmt_tail','stmt',3,'p_stmt_id_stmt','parser.py',25),
-  ('stmt -> RETURN expr','stmt',2,'p_stmt_return_expr','parser.py',29),
-  ('stmt -> RETURN','stmt',1,'p_stmt_return_only','parser.py',33),
-  ('stmt -> PASS','stmt',1,'p_stmt_pass','parser.py',37),
-  ('stmt -> term EQUALS term NEWLINE','stmt',4,'p_stmt_assignment','parser.py',44),
-  ('id_stmt_tail -> EQUALS expr','id_stmt_tail',2,'p_id_stmt_tail_assign','parser.py',48),
-  ('id_stmt_tail -> <empty>','id_stmt_tail',0,'p_id_stmt_tail_call','parser.py',52),
-  ('method_name -> ID','method_name',1,'p_method_name_id','parser.py',56),
-  ('method_name -> INIT','method_name',1,'p_method_name_init','parser.py',60),
-  ('param_list -> <empty>','param_list',0,'p_param_list_empty','parser.py',64),
-  ('param_list -> SELF','param_list',1,'p_param_list_self','parser.py',68),
-  ('param_list -> SELF COMMA params','param_list',3,'p_param_list_self_params','parser.py',72),
-  ('param_list -> params','param_list',1,'p_param_list_params','parser.py',76),
-  ('params -> ID COMMA params','params',3,'p_params_list','parser.py',80),
-  ('params -> ID','params',1,'p_params_single','parser.py',84),
-  ('expr -> term binary_op term','expr',3,'p_expr_binary','parser.py',88),
-  ('expr -> term','expr',1,'p_expr_term','parser.py',92),
-  ('term -> ID attr_chain','term',2,'p_term_id_attr','parser.py',96),
+  ('program -> stmt_list','program',1,'p_program','parser.py',11),
+  ('stmt_list -> stmt stmt_list','stmt_list',2,'p_stmt_list_multiple','parser.py',15),
+  ('stmt_list -> stmt','stmt_list',1,'p_stmt_list_single','parser.py',19),
+  ('stmt -> CLASS ID COLON NEWLINE block','stmt',5,'p_stmt_class','parser.py',23),
+  ('stmt -> DEF method_name LPAREN param_list RPAREN COLON NEWLINE block','stmt',8,'p_stmt_method','parser.py',27),
+  ('stmt -> ID EQUALS expr NEWLINE','stmt',4,'p_stmt_assignment_simple','parser.py',31),
+  ('stmt -> ID DOT ID EQUALS expr NEWLINE','stmt',6,'p_stmt_assignment_attr','parser.py',35),
+  ('stmt -> SELF DOT ID EQUALS expr NEWLINE','stmt',6,'p_stmt_self_assignment','parser.py',39),
+  ('stmt -> ID DOT ID LPAREN arg_list RPAREN NEWLINE','stmt',7,'p_stmt_method_call','parser.py',43),
+  ('stmt -> RETURN expr NEWLINE','stmt',3,'p_stmt_return_expr','parser.py',47),
+  ('stmt -> RETURN NEWLINE','stmt',2,'p_stmt_return_only','parser.py',51),
+  ('stmt -> PASS NEWLINE','stmt',2,'p_stmt_pass','parser.py',55),
+  ('method_name -> ID','method_name',1,'p_method_name_id','parser.py',59),
+  ('method_name -> INIT','method_name',1,'p_method_name_init','parser.py',63),
+  ('param_list -> <empty>','param_list',0,'p_param_list_empty','parser.py',67),
+  ('param_list -> SELF','param_list',1,'p_param_list_self','parser.py',71),
+  ('param_list -> SELF COMMA params','param_list',3,'p_param_list_self_params','parser.py',75),
+  ('param_list -> params','param_list',1,'p_param_list_params','parser.py',79),
+  ('params -> ID COMMA params','params',3,'p_params_list','parser.py',83),
+  ('params -> ID','params',1,'p_params_single','parser.py',87),
+  ('expr -> expr binary_op expr','expr',3,'p_expr_binary','parser.py',91),
+  ('expr -> term','expr',1,'p_expr_term','parser.py',95),
+  ('term -> ID LPAREN arg_list RPAREN','term',4,'p_term_method_call','parser.py',99),
   ('term -> SELF DOT ID','term',3,'p_term_self_attr','parser.py',103),
-  ('term -> ID','term',1,'p_term_id','parser.py',107),
-  ('term -> NUMBER','term',1,'p_term_number','parser.py',112),
-  ('term -> STRING','term',1,'p_term_string','parser.py',116),
-  ('term -> LPAREN expr RPAREN','term',3,'p_term_paren','parser.py',120),
-  ('binary_op -> PLUS','binary_op',1,'p_binary_op','parser.py',124),
-  ('binary_op -> MINUS','binary_op',1,'p_binary_op','parser.py',125),
-  ('binary_op -> MUL','binary_op',1,'p_binary_op','parser.py',126),
-  ('binary_op -> DIV','binary_op',1,'p_binary_op','parser.py',127),
-  ('attr_chain -> <empty>','attr_chain',0,'p_attr_chain_empty','parser.py',131),
-  ('attr_chain -> DOT ID attr_chain','attr_chain',3,'p_attr_chain_dot','parser.py',135),
-  ('attr_chain -> LPAREN arg_list RPAREN attr_chain','attr_chain',4,'p_attr_chain_call','parser.py',139),
-  ('arg_list -> <empty>','arg_list',0,'p_arg_list_empty','parser.py',143),
-  ('arg_list -> expr COMMA arg_list','arg_list',3,'p_arg_list_multi','parser.py',147),
-  ('arg_list -> expr','arg_list',1,'p_arg_list_single','parser.py',151),
-  ('block -> NEWLINE INDENT stmt_list DEDENT','block',4,'p_block','parser.py',155),
+  ('term -> ID DOT ID','term',3,'p_term_attr_access','parser.py',107),
+  ('term -> ID','term',1,'p_term_id','parser.py',111),
+  ('term -> NUMBER','term',1,'p_term_number','parser.py',115),
+  ('term -> STRING','term',1,'p_term_string','parser.py',119),
+  ('term -> LPAREN expr RPAREN','term',3,'p_term_paren','parser.py',123),
+  ('binary_op -> PLUS','binary_op',1,'p_binary_op','parser.py',127),
+  ('binary_op -> MINUS','binary_op',1,'p_binary_op','parser.py',128),
+  ('binary_op -> MUL','binary_op',1,'p_binary_op','parser.py',129),
+  ('binary_op -> DIV','binary_op',1,'p_binary_op','parser.py',130),
+  ('arg_list -> <empty>','arg_list',0,'p_arg_list_empty','parser.py',134),
+  ('arg_list -> expr COMMA arg_list','arg_list',3,'p_arg_list_multi','parser.py',138),
+  ('arg_list -> expr','arg_list',1,'p_arg_list_single','parser.py',142),
+  ('block -> INDENT stmt_list DEDENT','block',3,'p_block','parser.py',146),
 ]
