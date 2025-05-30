@@ -8,8 +8,8 @@
 # ----------------------------
 2. stmt_list   → stmt { stmt }
 3. stmt        → class_def | method_def | id_stmt | return_stmt | pass_stmt
-4. id_stmt     → ID attr_chain id_stmt_tail
-5. id_stmt_tail → EQUALS expr | ε       # assignment | method call
+4. id_stmt     → ID attr_chain id_stmt_tail  #
+5. id_stmt_tail → EQUALS expr | ε       # assignment | method call  = expr | 
 
 
 # ----------------------------

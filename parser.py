@@ -22,19 +22,19 @@ def p_stmt_method(p):
     p[0] = ('method_def', p[2], p[4], p[7])
 
 def p_stmt_id_stmt(p):
-    'stmt : ID attr_chain id_stmt_tail'
+    'stmt : ID attr_chain id_stmt_tail NEWLINE'
     p[0] = ('id_stmt', p[1], p[2], p[3])
 
 def p_stmt_return_expr(p):
-    'stmt : RETURN expr'
+    'stmt : RETURN expr NEWLINE'
     p[0] = ('return', p[2])
 
 def p_stmt_return_only(p):
-    'stmt : RETURN'
+    'stmt : RETURN NEWLINE'
     p[0] = ('return', None)
 
 def p_stmt_pass(p):
-    'stmt : PASS'
+    'stmt : PASS NEWLINE'
     p[0] = ('pass',)
 
 #------------------------------------

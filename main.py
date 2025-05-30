@@ -13,7 +13,9 @@ def main():
 
     preprocessed_code = preprocess_code(test_path)
     print("=== Preprocessed Code ===")
-    print(preprocessed_code)
+    for i, line in enumerate(preprocessed_code):
+        print(f"{i+1:02d}: {repr(line)}")
+    
 
     result = parser.parse(''.join(preprocessed_code), lexer=lexer)
     print("\n=== Resultado del parser ===")

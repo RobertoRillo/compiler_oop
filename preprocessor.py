@@ -75,6 +75,7 @@ def preprocess_code(file_path):
         i += 1
 
     # Eliminar líneas vacías finales
-    processed_lines = [line for line in processed_lines if line.strip()]
-
+    if not processed_lines[-1].endswith('\n'):
+        processed_lines[-1] += '\n'
+        
     return processed_lines
