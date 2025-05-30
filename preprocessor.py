@@ -2,7 +2,7 @@ import os
 
 # Patrones que NO se soportan
 ILLEGAL_PATTERNS = [
-    'f"', "f'", '>=', '<=', '!=', '**', '//', '#', '+=', '-=', 'print(', 'if ', 'else:'
+    'f"', "f'", '>=', '<=', '!=', '**', '//', '#', '+=', '-=', 'print(', 'if ', 'else:', '{', '}', '[', ']'
 ]
 
 def is_illegal_line(line):
